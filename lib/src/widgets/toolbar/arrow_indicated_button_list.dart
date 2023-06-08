@@ -117,8 +117,14 @@ class _ArrowIndicatedButtonListState extends State<ArrowIndicatedButtonList>
               hasScrollBody: false,
               child: widget.axis == Axis.horizontal
                   ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: widget.buttons,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        for (final button in widget.buttons) ...[
+                          button,
+                          const SizedBox(width: 14),
+                        ],
+                      ],
                     )
                   : Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,

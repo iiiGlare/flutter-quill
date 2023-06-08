@@ -250,6 +250,26 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
       locale: locale,
       afterButtonPressed: afterButtonPressed,
       children: [
+        for (var customButton in customButtons)
+          QuillIconButton(
+            key: customButton.key,
+            highlightElevation: 0,
+            hoverElevation: 0,
+            size: toolbarIconSize * kIconButtonFactor,
+            icon: Icon(
+              customButton.icon,
+              size: toolbarIconSize,
+              color: customButton.iconColor,
+            ),
+            tooltip: customButton.tooltip,
+            borderRadius: iconTheme?.borderRadius ?? 2,
+            onPressed: customButton.onTap,
+            afterPressed: afterButtonPressed,
+          ),
+        if (customButtons.isNotEmpty)
+          if (showDividers)
+            QuillDivider(axis,
+                color: sectionDividerColor, space: sectionDividerSpace),
         if (showUndo)
           HistoryButton(
             icon: Icons.undo_outlined,
@@ -560,25 +580,6 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
             iconTheme: iconTheme,
             dialogTheme: dialogTheme,
             afterButtonPressed: afterButtonPressed,
-          ),
-        if (customButtons.isNotEmpty)
-          if (showDividers)
-            QuillDivider(axis,
-                color: sectionDividerColor, space: sectionDividerSpace),
-        for (var customButton in customButtons)
-          QuillIconButton(
-            highlightElevation: 0,
-            hoverElevation: 0,
-            size: toolbarIconSize * kIconButtonFactor,
-            icon: Icon(
-              customButton.icon, 
-              size: toolbarIconSize,
-              color: customButton.iconColor,
-            ),
-            tooltip: customButton.tooltip,
-            borderRadius: iconTheme?.borderRadius ?? 2,
-            onPressed: customButton.onTap,
-            afterPressed: afterButtonPressed,
           ),
       ],
     );
