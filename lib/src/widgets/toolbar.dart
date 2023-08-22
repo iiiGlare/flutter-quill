@@ -265,6 +265,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ] else ...[
             CustomButton(
+              key: customButton.key,
               onPressed: customButton.onTap,
               icon: customButton.icon,
               iconColor: customButton.iconColor,
